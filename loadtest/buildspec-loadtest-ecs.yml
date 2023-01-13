@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+        - EXECUTE_TASK=true
+        - IS_SPOT=true
+        - TASK_DEFINITION=[INSIRA AQUI O NOME DA TASK DO TESTE:VERSAO]
+  build:
+    commands:
+        - |
+          if [ $EXECUTE_TASK = true ]; then
+
+             if [ $IS_SPOT = false ]; then
+                echo FARGATE_SPOT - Preparando ECS Task para teste de carga   
+                aws ecs run-task --cluster LoadTesting --task-definition $TASK_DEFINITION --network-configuration="awsvpcConfiguration={subnets=[##SUBSTITUIR COM ID DA SUBNET 1, SUBNET 2, SUBNET N##],securityGroups=[##SUBSTITUIR COM O ID DO SG##],assignPublicIp=ENABLED}" --platform-version=LATEST --launch-type=FARGATE
+             else
+                echo FARGATE - Preparando ECS Task para teste de carga   
+                aws ecs run-task --cluster LoadTesting --task-definition $TASK_DEFINITION --network-configuration="awsvpcConfiguration={subnets=[##SUBSTITUIR COM ID DA SUBNET 1, SUBNET 2, SUBNET N##],securityGroups=[##SUBSTITUIR COM O ID DO SG##]}" --platform-version=LATEST --capacity-provider-strategy capacityProvider=FARGATE_SPOT,weight=1
+             fi
+
+          else
+            echo Teste de carga não ativado. Altere a variável EXECUTE_TASK neste arquivo e rode novamente caso deseje a execução dos testes.
+          fi
