@@ -29,7 +29,7 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"Sample.API","imageUri":"%s"}]' $REPOSITORY_URI:latest > imagedefinitions.json
+      - printf '[{"name":"sample-api-loadtest","imageUri":"%s"}]' $REPOSITORY_URI:latest > imagedefinitions.json
       - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
 artifacts:
     discard-paths: yes
@@ -37,6 +37,4 @@ artifacts:
     files: 
     - imagedefinitions.json
     - imageDetail.json
-    #- appspec-loadtest.yaml
-    #- taskdef-loadtest.json
     
