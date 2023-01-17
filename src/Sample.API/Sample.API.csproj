@@ -14,7 +14,7 @@
     <AssemblyName>Sample.API</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <AssemblyName>anycompany.api</AssemblyName>
+    <AssemblyName>Sample.API</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'sample.api' " />
   <ItemGroup>
