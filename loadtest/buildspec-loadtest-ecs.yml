@@ -16,7 +16,7 @@ phases:
                 aws ecs run-task --cluster LoadTesting --task-definition $TASK_DEFINITION --network-configuration="awsvpcConfiguration={subnets=[##SUBSTITUIR COM ID DA SUBNET 1, SUBNET 2, SUBNET N##],securityGroups=[##SUBSTITUIR COM O ID DO SG##],assignPublicIp=ENABLED}" --platform-version=LATEST --launch-type=FARGATE
              else
                 echo FARGATE - Preparando ECS Task para teste de carga   
-                aws ecs run-task --cluster LoadTesting --task-definition $TASK_DEFINITION --network-configuration="awsvpcConfiguration={subnets=[##SUBSTITUIR COM ID DA SUBNET 1, SUBNET 2, SUBNET N##],securityGroups=[##SUBSTITUIR COM O ID DO SG##]}" --platform-version=LATEST --capacity-provider-strategy capacityProvider=FARGATE_SPOT,weight=1
+                aws ecs run-task --cluster LoadTesting --task-definition $TASK_DEFINITION --network-configuration="awsvpcConfiguration={subnets=[##SUBSTITUIR COM ID DA SUBNET 1, SUBNET 2, SUBNET N##],securityGroups=[##SUBSTITUIR COM O ID DO SG##],assignPublicIp=ENABLED}" --platform-version=LATEST --capacity-provider-strategy capacityProvider=FARGATE_SPOT,weight=1
              fi
 
           else
