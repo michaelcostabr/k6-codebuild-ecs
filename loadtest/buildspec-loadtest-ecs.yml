@@ -5,7 +5,7 @@ phases:
     commands:
         - EXECUTE_TASK=true
         - IS_SPOT=true
-        - TASK_DEFINITION=Sample-Api-Loadtest:latest
+        - TASK_DEFINITION=Sample-API-Loadtest:1 #atenção, alterar caso promova a versão ta Task Definition
   build:
     commands:
         - |
